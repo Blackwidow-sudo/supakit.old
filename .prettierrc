@@ -1,4 +1,11 @@
 {
+	"tabWidth": 2,
+	"bracketSameLine": true,
+	"singleAttributePerLine": true,
+	"svelteSortOrder": "scripts-options-markup-styles",
+	"endOfLine": "auto",
+	"arrowParens": "avoid",
+	"semi": false,
 	"useTabs": true,
 	"singleQuote": true,
 	"trailingComma": "none",
