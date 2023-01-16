@@ -7,11 +7,6 @@
 	import Navbar from './Navbar.svelte'
 
 	/**
-	 * Props.
-	 */
-	export let data: PageData
-
-	/**
 	 * State.
 	 */
 	const routes = [
@@ -26,10 +21,6 @@
 		{
 			name: 'Login',
 			href: '/login'
-		},
-		{
-			name: 'Testpage',
-			href: '/testpage'
 		}
 	]
 
