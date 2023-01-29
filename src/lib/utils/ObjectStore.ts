@@ -1,7 +1,7 @@
 import { writable, type StartStopNotifier, type Writable } from 'svelte/store'
 
 /**
- * Types.
+ * Custom store with common methods for object manipulation.
  */
 interface ObjectStore<T extends Record<string, unknown>> extends Writable<T> {
 	/**
@@ -27,10 +27,11 @@ interface ObjectStore<T extends Record<string, unknown>> extends Writable<T> {
 }
 
 /**
+ * Create a `Writable` store that allows both updating and reading by subscription.
  *
- * @param value
- * @param start
- * @returns
+ * @param value initial value
+ * @param start start and stop notifications for subscriptions
+ * @returns custom store with common object methods
  */
 function objectStore<T extends Record<string, unknown>>(
 	value?: T,

@@ -1,14 +1,15 @@
 import { writable, type StartStopNotifier, type Writable } from 'svelte/store'
 
 /**
- * Types.
+ * Base type.
+ * Every database record has atleast an in.
  */
 interface DBRecord {
 	id: number
 }
 
 /**
- * Extended store with common methods to work on arrays.
+ * Custom store with common methods for array manipulation.
  */
 interface ArrayStore<T extends DBRecord> extends Writable<T[]> {
 	/**
@@ -28,11 +29,11 @@ interface ArrayStore<T extends DBRecord> extends Writable<T[]> {
 	 *
 	 * @param id The record that should be removed
 	 */
-	removeRecord(id: number): void
+	deleteRecord(id: number): void
 	/**
 	 * Sort the records.
 	 */
-	sortRecords(compareFn?: (a: T, b: T) => number): void
+	sort(compareFn?: (a: T, b: T) => number): void
 }
 
 /**
@@ -40,7 +41,7 @@ interface ArrayStore<T extends DBRecord> extends Writable<T[]> {
  *
  * @param value initial value
  * @param start start and stop notifications for subscriptions
- * @returns An extended store for arrays of objects
+ * @returns custom store with common array methods
  */
 function arrayStore<T extends DBRecord>(
 	value?: T[],
@@ -66,7 +67,7 @@ function arrayStore<T extends DBRecord>(
 				return prev
 			})
 		},
-		removeRecord(id: number) {
+		deleteRecord(id: number) {
 			update((prev: T[]) => {
 				const index = prev.findIndex(item => item.id === id)
 
@@ -75,7 +76,7 @@ function arrayStore<T extends DBRecord>(
 				return prev
 			})
 		},
-		sortRecords(compareFn?: (a: T, b: T) => number) {
+		sort(compareFn?: (a: T, b: T) => number) {
 			update((prev: T[]) => {
 				return prev.sort(compareFn)
 			})
