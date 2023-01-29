@@ -1,9 +1,8 @@
 <script lang="ts">
 	import '../app.css'
-	import { supabase } from '$lib/db'
 	import { goto, invalidate } from '$app/navigation'
 	import { onMount } from 'svelte'
-	import type { PageData } from './$types'
+	import { supabase } from '$lib/db'
 	import Navbar from './Navbar.svelte'
 
 	/**
@@ -56,4 +55,6 @@
 <Navbar
 	{routes}
 	on:logout={onLogout} />
-<slot />
+<main class="container mx-auto">
+	<slot />
+</main>

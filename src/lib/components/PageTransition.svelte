@@ -15,7 +15,6 @@
 </script>
 
 <div
-	class="container mx-auto"
 	in:fade={inParams}
 	out:fade={outParams}>
 	<slot />
